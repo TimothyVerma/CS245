@@ -14,34 +14,57 @@ import os
 
 def make_file():  
     #dirName = 'C:\\Users\\Timothy\\Documents\\Programing\\CS245.Python\\log'
-    dirName = input('Directory name:')
     
-    if os.path.isdir(dirName) == True:
+    while True:
         
-        fileName = input('File name:')
+        dirName = input('Directory name:')
         
-        filePath = dirName + '\\' + fileName + '.txt'
-    
-        if os.path.isfile(filePath) == False:
-    
-            write_to_file(filePath)
-            print ('A file named',fileName,'was created in directory', dirName)
+        if os.path.isdir(dirName) == True:
+            
+            while True:
+                    
+                fileName = input('File name:')
+                
+                filePath = dirName + '\\' + fileName + '.txt'
+                
+                
+                if os.path.isfile(filePath) == False:
+            
+                    write_to_file(filePath)
+                    print ('A file named',fileName,'was created in directory', dirName)
+                    break
+                
+                else:
+                    
+                    print ('A file named',filePath,'already exists.')
+            break
         
         else:
-            
-            print ('A file named',filePath,'already exists.')
-    
+            print ("Diretory not found.")
+        
     
 def write_to_file(filePath):
     
-    userName = input('Name:')
-    userAddress = input('Address:')
-    userPhn = input('Phone Number:')
-    
-    file = open(filePath , mode = 'w')    
-    
-    file.write(userName + ',' + userAddress + ',' + userPhn)
-
+    while True:
+            
+        userName = input(str('Name:'))
+        userAddress = input(str('Address:'))
+        userPhn = input(str('Phone Number:'))
+        
+        data = userName + ',' + userAddress + ',' + userPhn
+        
+        print ('\nYou entered "' + data + '." Is that all correct?')
+        
+        response = input('(Y)es:').lower()
+        
+        if response[0] == 'y':
+        
+            file = open(filePath , mode = 'w')    
+        
+            file.write(data)
+            file.close()
+            
+            break
 
 if __name__ == '__main__':
     make_file()  
