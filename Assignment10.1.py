@@ -75,10 +75,10 @@ def get_data(fileName):
         userPhn = input(str('Phone Number: '))
         ##asks User for information
         
-        data = userName + ',' + userAddress + ',' + userPhn
+        data = '"' + userName + '","' + userAddress + '","' + userPhn + '"'
         ##combines the three to make a single string
         
-        print ('\nYou entered "' + data + '." Is that all correct?')
+        print ('\nYou entered ' + data + '. Is that all correct?')
         
         response = input('(Y)es:').lower()
         
