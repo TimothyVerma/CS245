@@ -8,7 +8,8 @@ in a file and stores the file in the directory specified by the user.
 
 after writing the program dislplays the file text for the user to verify
 
-Created on Fri May 15 18:06:46 2020
+Created on Fri May 15 18:06:46 2020 JST
+Edited on Saturday May 16 18:26 2020 JST
 
 @author: Timothy
 """
