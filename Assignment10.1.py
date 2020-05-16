@@ -22,8 +22,6 @@ def make_file():
         dirName = input('Directory name:')
         ##user must specify which directory to use
         
-        ##dirName =  'C:\\Users\\Timothy\\Documents\Programing\\CS245.Python\\logs'
-        
         if os.path.isdir(dirName) == True:
         ## Makes sure the directory exists
             
