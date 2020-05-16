@@ -3,6 +3,12 @@ This is a program to get the weather form openweathermap.org
 It allows the user to check the weather for multiple locations
 It checks if the location is valid and notifies the user
 It uses try blocks to detect connection errors and notifies the user 
+
+Author: 
+Timothy
+
+commited to git on:
+May 16 2020 
 '''
 
 #import module from Requests Library for pulling from api key
