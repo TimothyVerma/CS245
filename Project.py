@@ -7,11 +7,12 @@ It uses try blocks to detect connection errors and notifies the user
 Author: 
 Timothy
 
-commited to git on:
-May 16 2020 
-'''
+commited to git on: May 16 2020 
 
-#import module from Requests Library for pulling from api key
+Edited: May 19 2020
+Api integreation started
+'''
+import requests
 
 def weather_check():
 ## Asks the user for input and will gets weather info from openweathermap.org when finished
@@ -23,17 +24,14 @@ def weather_check():
 
         location = input (':: ')
    
-        if location.lower() == 'exit' or location.lower() == 'end' or location == 'e':
+        if location.lower == 'exit' or location.lower() == 'end' or location == 'e':
         
             break
         
         else:
             try:
         
-                location = check_location( location )
-                weather = query_api( location )
-    
-                print ("The weather in", location , "is" , weather , "\n")
+                query_api( location )
             
             except Exception as e:
                 print (e)
@@ -67,12 +65,19 @@ def check_location( location ):
 
 def  query_api( location ):
     
-    ##data_source = "9a4a26cb051a9f1d9653f24047e937a3"
-    ##api key for http://openweathermap.org/
+    data_source = "5b12de548d5e384e2d222a3104b2c661"
+    ##api key for openweathermap.org
     
-    ## I will write code that queries the api for weather info at the location 
-    return 'sunny'
-
+    weather_url = 'http://api.openweathermap.org/data/2.5/weather?q='
+    data_source = '&appid=5b12de548d5e384e2d222a3104b2c661'
+    query = weather_url + location + data_source
+    data = requests.post(query)
+    data_dic = (data.json())
+    loc = data_dic['name']
+    descrition = data_dic['weather']
+    weather = (descrition[0]['description'])
+    print (loc , "has a" , weather ,)
+    
 
 if __name__ == '__main__':
         
