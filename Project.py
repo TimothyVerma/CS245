@@ -13,7 +13,9 @@ Edited: May 19 2020
 Api integreation started
 '''
 import requests
-
+data_source = '&appid=5b12de548d5e384e2d222a3104b2c661'
+##api key for openweathermap.org
+    
 def weather_check():
 ## Asks the user for input and will gets weather info from openweathermap.org when finished
     
@@ -21,7 +23,7 @@ def weather_check():
     ## Using a loop so you user can querie the weather for multiple cities
 
         print("What zipcode or city name", end = '')
-
+        
         location = input (':: ')
    
         if location.lower == 'exit' or location.lower() == 'end' or location == 'e':
@@ -38,7 +40,8 @@ def weather_check():
         print('='*30)
 
             
-def check_location( location ):           
+def check_conecction( location ):           
+    global data_source
     
     ### A dicttionary of locations
     locations = {
@@ -64,20 +67,22 @@ def check_location( location ):
 
 
 def  query_api( location ):
-    
-    data_source = "5b12de548d5e384e2d222a3104b2c661"
-    ##api key for openweathermap.org
+    global data_source
     
     weather_url = 'http://api.openweathermap.org/data/2.5/weather?q='
-    data_source = '&appid=5b12de548d5e384e2d222a3104b2c661'
-    query = weather_url + location + data_source
+    query = weather_url + location + "&units=imperial" + data_source
+    #print (query)  ##for debugging, make sure the url is valid 
     data = requests.post(query)
-    data_dic = (data.json())
-    loc = data_dic['name']
-    descrition = data_dic['weather']
-    weather = (descrition[0]['description'])
-    print (loc , "has a" , weather ,)
-    
+    if data.status_code == 200:
+
+        data_dict = (data.json())
+        loc = data_dict['name']
+        temp_dict = data_dict['main']
+        temp = str(temp_dict['temp'])
+        print ('It is ' + temp + '°f in ' + loc)
+        
+    else:
+        print ('Sorry, there is no weather data for ' + location)
 
 if __name__ == '__main__':
         
