@@ -1,12 +1,15 @@
 '''
 This is a program to get the weather form openweathermap.org 
 It allows the user to check the weather for multiple locations
+
+EXTRA CREDIT
+Display the Clouds or Winds forecast in terms of partly, mostly cloudy, and calm, breezy, windy.
+
+Still not perfected
+Allow the user to obtain weather forecast data using their zip code and city
 It checks if the location is valid and notifies the user
 It uses try blocks to detect connection errors and notifies the user 
 
-EXTRA CREDIT
-Allow the user to obtain weather forecast data using their zip code and city
-Display the Clouds or Winds forecast in terms of partly, mostly cloudy, and calm, breezy, windy.
 
 Author: 
 Timothy
@@ -30,8 +33,7 @@ def Weather_Check():
 
         print("Enter US zipcode or city name", end = '')
         
-        ##location = input (':: ')
-        location = 'Los Angeles'
+        location = input (':: ')
         
         if location.lower == 'exit' or location.lower() == 'end' or location == 'e':
         
@@ -47,7 +49,7 @@ def Weather_Check():
                 print (e)
         print('='*30)
 
-            
+## Need to change this completely to make it a valid check for the API            
 # =============================================================================
 # def check_conecction( location ):           
 #     global data_source
