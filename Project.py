@@ -46,12 +46,16 @@ def Weather_Check():
                 data = Connect_To_Api( location )
                 ## pulls data from the API
                 
-                Query_Api( data )
-                ##converst the data from the API into a simple sentance. 
-                
+                if data == 'error':
+                    
+                    print ('Sorry, there is no weather data for ' + location )
+                    
+                else:
+                    Query_Api( data )
+                    ##converst the data from the API into a simple sentance. 
+            
             except:
                 print ("Connection Error")
-                break
         
         
 def  Connect_To_Api( location ):
@@ -62,27 +66,31 @@ def  Connect_To_Api( location ):
     weather_url = 'http://api.openweathermap.org/data/2.5/weather?q='
     
     query =  weather_url + location + ",us" + "&units=imperial" + data_source
-    ## makes a string that is formatted for the API, 
+    ## string containing the location that is formatted for the API, 
+
     ## ',us' makes it only check US codes, otherwise Zipcodes can be misinterpereted 
-    
+
     ## "&units=imperial" converts the temprature and windspeed data to impreial units
-    #print (query)  ##for debugging, make sure the url is valid 
-    
+  
     data = requests.post( query )
- 
+    
     if data.status_code == 200:
     ## Checks that the connection was made correctly
         return data
     else:
-        print ('Sorry, there is no weather data for ' + location )
-
+        return 'error'
+        
     
 def Query_Api( data ):
-    ## Checks that the connection if vaild, and runs var
+    ## Checks that the connection if vaild, and runs funtions to format the data
         
     data_dict = data.json()
-    loc = data_dict['name']
     ## created a dictionary for the location provided
+    
+    loc = data_dict['name']
+    ##Uses a city name provided by the API, mostly for zipcode 
+    ##Also useful if they user used all caps or lowercase
+    
     print('Ok, finding weather data for ' + loc)
     ##lets user know their location was accepted, converts it to city name
     
@@ -91,7 +99,7 @@ def Query_Api( data ):
     sky = Clouds (data_dict ) 
     
     print ('It is ' + temp + '°f, ' + wind + ', and ' + sky + ' in ' + loc)
-    
+    ##prints the data in a simple sentance
    
 def Temp(data_dict):
     ## Converts the temprature to string
