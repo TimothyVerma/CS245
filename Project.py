@@ -26,17 +26,16 @@ from math import floor
     
 def Weather_Check():
 ## Asks the user for input and will gets weather info from openweathermap.org when finished
+    print('='*80)
+    print ( 'Welcome, I will tell you the weather form places around the US' )
+    print ( "Enter US zipcode or city name or Enter exit or end when you're done." , end = '' )
     
     while (True):
     ## Using a loop so you user can querie the weather for multiple cities
         
-        print('='*80)
-
-        print("Enter US zipcode or city name", end = '')
-        
         location = input (':: ')
         
-        if location.lower == 'exit' or location.lower() == 'end' or location == 'e':
+        if location.lower == 'exit' or location.lower() == 'end' or location.lower() == 'e':
             break
         
         else:
@@ -53,7 +52,11 @@ def Weather_Check():
                 else:
                     Query_Api( data )
                     ##converst the data from the API into a simple sentance. 
-            
+                
+                print( '='*80 )
+                print ( "Enter Another location or enter exit or end if you're done." , end = '' )
+
+                
             except:
                 print ("Connection Error")
         
