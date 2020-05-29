@@ -8,6 +8,9 @@ EXTRA CREDIT
 Display the Clouds or Winds forecast in terms of partly, mostly cloudy, and calm, breezy, windy.
 Allow the user to obtain weather forecast data using their zip code and city
 
+Known bug:
+Some zipcodes appear to be slightly wrong in the database 
+
 Author: 
 Timothy
 
@@ -17,7 +20,7 @@ Edited: May 19 2020
 Api integreation started
 
 Edited May 22 2020
-finished?
+Edited May 23 2020
 '''
 import requests
 from math import floor
@@ -27,11 +30,11 @@ from math import floor
 def Weather_Check():
 ## Asks the user for input and will gets weather info from openweathermap.org when finished
     print('='*80)
-    print ( 'Welcome, I will tell you the weather form places around the US' )
+    print ( 'Welcome, I will tell you the weather for cities in the US' )
     print ( "Enter US zipcode or city name or Enter exit or end when you're done." , end = '' )
     
     while (True):
-    ## Using a loop so you user can querie the weather for multiple cities
+    ## Using a loop so you user can check the weather for multiple cities
         
         location = input (':: ')
         
@@ -74,7 +77,7 @@ def  Connect_To_Api( location ):
     ## ',us' makes it only check US codes, otherwise Zipcodes can be misinterpereted 
 
     ## "&units=imperial" converts the temprature and windspeed data to impreial units
-  
+    
     data = requests.post( query )
     
     if data.status_code == 200:
